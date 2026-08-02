@@ -1,0 +1,90 @@
+# MindMaze Therapeutics
+
+> MindMaze Therapeutics Holding SA (SIX: MMTX) is a Swiss precision-neurotherapeutics company headquartered in Lausanne, founded in 2012 by Tej Tadi as an EPFL spin-off and formed in its current shape in December 2025 when successor entity NeuroX completed a business combination with Relief Therapeutics. It builds digital neurotherapeutics - gamified therapy software paired with proprietary sensors and AI-driven analytics - for stroke, Parkinson's disease and at-risk aging, delivered across the continuum of care from hospital to outpatient to home, and deployed in more than 250 clinics and rehabilitation centers globally.
+
+MindMaze is a regulated medical-device and digital-therapeutics vendor, not a software platform business. As of 2026-08-01 it publishes **no developer portal, no API documentation, no SDKs, no CLI, no sandbox and no product API contract of any kind**. `api.mindmaze.com`, `developer.mindmaze.com`, `docs.mindmaze.com` and every other developer-shaped hostname fail to resolve — do not assume or invent one. There is no MCP server, no GraphQL surface, no A2A agent card and no GitHub organization.
+
+The one machine-readable surface that does exist is the **WordPress core REST API** behind the corporate site, served anonymously at `https://mindmazetherapeutics.com/wp-json/`. It is a real, callable, read-only content API over 450 posts, 49 pages, 1,070 media items and 11 categories. Because MindMaze is a SIX-listed issuer, that post corpus is dominated by regulatory disclosure: 309 EQS posts, 162 EQS ad-hoc announcements, 147 other investor-relations items and 27 press releases. It is a corporate content API — it carries no clinical, device or patient data.
+
+**Content signals.** `mindmazetherapeutics.com/robots.txt` publishes a Cloudflare-managed Content Signals policy of `search=yes, ai-train=no, use=reference`, asserts an Article 4 EU DSM reservation of rights, and explicitly disallows GPTBot, ClaudeBot, CCBot, Google-Extended, Applebot-Extended, Amazonbot, Bytespider and meta-externalagent. Treat retrieved content as reference-only and do not use it for model training.
+
+## Company
+
+- [MindMaze Therapeutics](https://mindmazetherapeutics.com/): company website (mindmaze.com 302-redirects here)
+- [About MindMaze Therapeutics](https://mindmazetherapeutics.com/about/mindmaze-therapeutics/): company overview, FDA-listed and CE-marked claims
+- [MindMaze platform](https://mindmazetherapeutics.com/mindmaze-platform/): the precision-neurotherapeutic platform
+- [Our approach](https://mindmazetherapeutics.com/mindmaze-platform/our-approach/)
+- [Clinical evidence](https://mindmazetherapeutics.com/mindmaze-platform/clincal-evidence/)
+- [Contact](https://mindmazetherapeutics.com/about/contact/): offices in Lausanne, Geneva and Charlotte NC; customer support numbers and hours
+- [Careers](https://mindmazetherapeutics.com/about/careers/)
+
+## Products
+
+- [Therapy and monitoring](https://mindmazetherapeutics.com/therapy-and-monitoring/): the full portfolio
+- [Companion](https://mindmazetherapeutics.com/therapy-and-monitoring/companion/)
+- [MindMotion GO](https://mindmazetherapeutics.com/therapy-and-monitoring/mindmotion-go/)
+- [MindPod](https://mindmazetherapeutics.com/therapy-and-monitoring/mindpod/)
+- [Izar](https://mindmazetherapeutics.com/therapy-and-monitoring/izar/): smart hand and wrist peripheral
+- [Physilog](https://mindmazetherapeutics.com/therapy-and-monitoring/physilog/): 3D motion analytics and digital biomarkers
+- [ToapRun](https://mindmazetherapeutics.com/therapy-and-monitoring/toaprun/)
+- [Instructions for Use](https://mindmazetherapeutics.com/therapy-and-monitoring/instructions-for-use/): IFU request route, PDF or paper within 7 calendar days
+
+## Research
+
+- [MindMaze Labs](https://mindmazetherapeutics.com/research-and-innovation/mindmaze-labs/)
+- [Neurotherapeutics frontiers](https://mindmazetherapeutics.com/research-and-innovation/mindmaze-labs/neurotherapeutics-frontiers/)
+- [Research collaborations](https://mindmazetherapeutics.com/research-and-innovation/mindmaze-labs/research-collaborations/)
+- [Human performance](https://mindmazetherapeutics.com/research-and-innovation/mindmaze-labs/human-performance/)
+- [Deep technology](https://mindmazetherapeutics.com/research-and-innovation/mindmaze-labs/deep-technology/)
+
+## Investor relations (SIX: MMTX)
+
+- [Investor relations](https://mindmazetherapeutics.com/investor-relations/)
+- [Share price](https://mindmazetherapeutics.com/investor-relations/share-price/)
+- [Key stock information](https://mindmazetherapeutics.com/investor-relations/key-stock-information/)
+- [Financial reports](https://mindmazetherapeutics.com/investor-relations/financial-reports/)
+- [Financial calendar](https://mindmazetherapeutics.com/investor-relations/financial-calendar/)
+- [Investor presentations](https://mindmazetherapeutics.com/investor-relations/investor-presentations/)
+- [IR news and events](https://mindmazetherapeutics.com/investor-relations/irnews-and-irevents/)
+- [Board and executive team](https://mindmazetherapeutics.com/investor-relations/board-and-executive-team/)
+- [US ADR program](https://mindmazetherapeutics.com/investor-relations/us-adr-program/)
+- [Equity research coverage](https://mindmazetherapeutics.com/investor-relations/equity-research-coverage/)
+
+## News and legal
+
+- [Media](https://mindmazetherapeutics.com/about/media/): press releases, in-the-media coverage, events
+- [RSS feed](https://mindmazetherapeutics.com/feed/)
+- [Terms and conditions](https://mindmazetherapeutics.com/terms-and-conditions/)
+- [EU privacy policy](https://mindmazetherapeutics.com/privacy-policy-eu/)
+- [US privacy policy](https://mindmazetherapeutics.com/privacy-policy-us/)
+- [Cookie policy](https://mindmazetherapeutics.com/cookie-policy/)
+- [Personal data requests](https://mindmazetherapeutics.com/personal-data-requests/)
+
+## The one machine-readable surface
+
+- [WordPress REST API index](https://mindmazetherapeutics.com/wp-json/): 18 namespaces, 466 registered routes, self-describing
+- `GET /wp-json/wp/v2/posts?categories=24` — EQS ad-hoc regulatory announcements
+- `GET /wp-json/wp/v2/posts?categories=8` — press releases
+- `GET /wp-json/wp/v2/pages` — product, platform and research pages
+- `GET /wp-json/wp/v2/media?mime_type=application/pdf` — investor presentations and report attachments
+- `GET /wp-json/wp/v2/search?search=<term>` — cross-content search
+- Anonymous, read-only. `per_page` caps at 100. Paginate with the `Link: rel="next"` header and read `X-WP-Total`. Errors are `{code, message, data:{status}}`, not RFC 9457. Do not call `/wp/v2/users`.
+
+## API Evangelist artifacts
+
+- [apis.yml](https://raw.githubusercontent.com/api-evangelist/mindmaze/refs/heads/main/apis.yml): APIs.json index for MindMaze Therapeutics
+- [Content API OpenAPI](https://raw.githubusercontent.com/api-evangelist/mindmaze/refs/heads/main/openapi/mindmaze-content-openapi.yml): derived, 17 verified anonymous operations
+- [WordPress route discovery document](https://raw.githubusercontent.com/api-evangelist/mindmaze/refs/heads/main/openapi/mindmaze-content-wp-routes-original.json): saved verbatim
+- [Overlay](https://raw.githubusercontent.com/api-evangelist/mindmaze/refs/heads/main/overlays/mindmaze-content-overlay.yaml)
+- [Conventions](https://raw.githubusercontent.com/api-evangelist/mindmaze/refs/heads/main/conventions/mindmaze-conventions.yml)
+- [Error catalog](https://raw.githubusercontent.com/api-evangelist/mindmaze/refs/heads/main/errors/mindmaze-problem-types.yml)
+- [Authentication](https://raw.githubusercontent.com/api-evangelist/mindmaze/refs/heads/main/authentication/mindmaze-authentication.yml)
+- [Data model](https://raw.githubusercontent.com/api-evangelist/mindmaze/refs/heads/main/data-model/mindmaze-data-model.yml)
+- [Lifecycle](https://raw.githubusercontent.com/api-evangelist/mindmaze/refs/heads/main/lifecycle/mindmaze-lifecycle.yml)
+- [Conformance](https://raw.githubusercontent.com/api-evangelist/mindmaze/refs/heads/main/conformance/mindmaze-conformance.yml)
+- [Agent skills](https://raw.githubusercontent.com/api-evangelist/mindmaze/refs/heads/main/skills/_index.yml)
+- [Agentic access](https://raw.githubusercontent.com/api-evangelist/mindmaze/refs/heads/main/agentic-access/mindmaze-agentic-access.yml)
+- [MCP candidate tools](https://raw.githubusercontent.com/api-evangelist/mindmaze/refs/heads/main/mcp/mindmaze-mcp.yml): proposal only, no server exists
+- [Well-known probe](https://raw.githubusercontent.com/api-evangelist/mindmaze/refs/heads/main/well-known/mindmaze-well-known.yml): recorded discovery results
+- [Domain security](https://raw.githubusercontent.com/api-evangelist/mindmaze/refs/heads/main/security/mindmaze-domain-security.yml)
+- [Packages](https://raw.githubusercontent.com/api-evangelist/mindmaze/refs/heads/main/packages/mindmaze-packages.yml): none exist

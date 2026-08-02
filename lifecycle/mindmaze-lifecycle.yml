@@ -1,0 +1,49 @@
+generated: '2026-08-01'
+method: derived
+source: openapi/mindmaze-content-openapi.yml + site search of mindmazetherapeutics.com (2026-08-01)
+versioning:
+  scheme: namespace-in-path
+  current: wp/v2
+  docs: null
+  note: >-
+    The only version marker on any MindMaze surface is the WordPress core REST namespace. This
+    is a platform version, not a MindMaze API version, and MindMaze does not commit to it.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    No deprecation policy is published, no RFC 8594 Sunset or Deprecation header was observed,
+    and no API changelog exists. No Deprecation pointer is wired in apis.yml.
+sla:
+  url: null
+  uptime_target: null
+status_page:
+  url: null
+  note: >-
+    No status page exists. status.mindmaze.com does not resolve, and no Statuspage,
+    Instatus or Better Stack property was found for either domain. No StatusPage pointer is
+    wired in apis.yml.
+support:
+  url: https://mindmazetherapeutics.com/about/contact/
+  email: customersupport@mindmazetherapeutics.com
+  phones:
+    us: +1 833 538 0101
+    uk: +44 118 230 2021
+    international: +800 4415 4415
+  hours: 09:00 UK time (GMT+1) to 16:00 Pacific time (GMT-7), Monday to Friday
+  first_response_target: 24 hours
+  note: >-
+    This is medical-device customer support for clinicians and patients, not developer support.
+    It is the only published support commitment MindMaze makes.
+deprecated_operations: []
+corporate_lifecycle:
+  note: >-
+    The company itself changed shape in the window this repo covers. MindMaze SA's successor
+    entity NeuroX completed a business combination with Relief Therapeutics in December 2025,
+    forming MindMaze Therapeutics Holding SA, listed on the SIX Swiss Exchange as MMTX. The
+    legacy mindmaze.com domain now 302-redirects to mindmazetherapeutics.com. Any historic
+    catalog reference to a mindmaze.com property should be treated as redirected, not removed.
+  sources:
+  - https://mindmazetherapeutics.com/relief-therapeutics-and-neurox-complete-business-combination-and-form-mindmaze-therapeutics/
+  - https://mindmazetherapeutics.com/about/mindmaze-therapeutics/

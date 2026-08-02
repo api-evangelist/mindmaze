@@ -1,8 +1,24 @@
 aid: mindmaze
 name: MindMaze
-description: 'MindMaze is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'MindMaze Therapeutics Holding SA (SIX: MMTX) is a Swiss precision-neurotherapeutics
+  company headquartered in Lausanne, with a Geneva holding entity and a US base in Charlotte,
+  North Carolina. Founded in 2012 by Tej Tadi as an EPFL spin-off, MindMaze became Switzerland''s
+  first unicorn and in December 2025 its successor entity NeuroX completed a business
+  combination with Relief Therapeutics to form the SIX-listed MindMaze Therapeutics.
+  The company builds digital neurotherapeutics that pair gamified therapy software with
+  proprietary sensors and AI-driven analytics across the continuum of care - in-hospital,
+  outpatient and at home - for stroke, Parkinson''s disease and at-risk aging. Its FDA-listed
+  and CE-marked portfolio includes Companion, MindMotion GO, MindPod, the Izar smart hand
+  peripheral, the Physilog 3D motion-analytics platform and TOAP Run, deployed in more
+  than 250 clinics and rehabilitation centers globally. MindMaze is a regulated medical-device
+  and digital-therapeutics vendor rather than a software platform business: as of 2026-08-01
+  it publishes no developer portal, no API documentation, no SDKs, no CLI and no product API
+  contract, and no API, docs or developer subdomain resolves on its domains. The one
+  machine-readable surface it does serve is the anonymous WordPress REST API behind its
+  corporate site, which carries 450 posts - 309 of them EQS regulatory and investor-relations
+  disclosure for the SIX-listed issuer - 49 pages and 1,070 media records.'
 url: https://raw.githubusercontent.com/api-evangelist/mindmaze/refs/heads/main/apis.yml
+image: https://mindmazetherapeutics.com/wp-content/themes/mindmaze/images/mindmazetheraputics.png
 x-type: company
 x-source: harvest:secondary-market
 x-tier: stub
@@ -12,12 +28,132 @@ created: '2026-08-01'
 modified: '2026-08-01'
 tags:
 - Company
-apis: []
+- Digital Therapeutics
+- Neurotechnology
+- Neurorehabilitation
+- Medical Devices
+- Health
+- Artificial Intelligence
+- Stroke
+- Parkinsons Disease
+- Switzerland
+apis:
+- name: MindMaze Therapeutics Content API
+  description: >-
+    The public, anonymous WordPress REST API behind mindmazetherapeutics.com. It is not a
+    MindMaze product, clinical or device API - none exists - but it is a real machine-readable
+    surface, and because MindMaze Therapeutics Holding SA is listed on the SIX Swiss Exchange
+    (MMTX) it carries the company's regulatory disclosure stream: 309 EQS posts, 162 EQS ad-hoc
+    announcements, 147 other investor-relations items, 27 press releases, 92 in-the-media
+    entries, 17 events, 7 testimonials and 2 product announcements, alongside 49 marketing,
+    platform, product and research pages and 1,070 media records including investor-presentation
+    and financial-report PDFs. Every operation captured here was verified to return HTTP 200
+    anonymously on 2026-08-01; write and administrative routes exist on the host but return 401
+    rest_forbidden and are deliberately excluded, as is /wp/v2/users, which exposes author
+    personal data anonymously.
+  humanURL: https://mindmazetherapeutics.com/about/media/
+  baseURL: https://mindmazetherapeutics.com/wp-json
+  tags:
+  - Content
+  - News
+  - Investor Relations
+  - Regulatory Disclosure
+  - Media
+  properties:
+  - type: OpenAPI
+    url: openapi/mindmaze-content-openapi.yml
+  - type: Overlay
+    url: overlays/mindmaze-content-overlay.yaml
+  - type: Examples
+    url: examples/mindmaze-categories.json
+  - type: Examples
+    url: examples/mindmaze-press-releases.json
+  - type: Examples
+    url: examples/mindmaze-eqs-ad-hoc-news.json
+  - type: Examples
+    url: examples/mindmaze-search.json
+  - type: Examples
+    url: examples/mindmaze-content-types.json
+  - type: Examples
+    url: examples/mindmaze-taxonomies.json
+  - type: ToolCrosswalk
+    url: mcp/mindmaze-tool-crosswalk.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-08-01'
+  status: enriched
+  artifacts_added: 26
+  pass: local-v1
 common:
+- type: AgenticAccess
+  url: agentic-access/mindmaze-agentic-access.yml
+- type: DomainSecurity
+  url: security/mindmaze-domain-security.yml
+- type: Authentication
+  url: authentication/mindmaze-authentication.yml
+- type: Conventions
+  url: conventions/mindmaze-conventions.yml
+- type: ErrorCatalog
+  url: errors/mindmaze-problem-types.yml
+- type: DataModel
+  url: data-model/mindmaze-data-model.yml
+- type: Lifecycle
+  url: lifecycle/mindmaze-lifecycle.yml
+- type: Conformance
+  url: conformance/mindmaze-conformance.yml
+- type: Packages
+  url: packages/mindmaze-packages.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/mindmaze-llms.txt
+- type: ContentSignal
+  url: well-known/mindmaze-robots.txt
 - type: Website
+  url: https://mindmazetherapeutics.com/
+- type: About
+  url: https://mindmazetherapeutics.com/about/mindmaze-therapeutics/
+- type: Products
+  url: https://mindmazetherapeutics.com/therapy-and-monitoring/
+- type: Platform
+  url: https://mindmazetherapeutics.com/mindmaze-platform/
+- type: Research
+  url: https://mindmazetherapeutics.com/research-and-innovation/mindmaze-labs/
+- type: Support
+  url: https://mindmazetherapeutics.com/about/contact/
+- type: Blog
+  url: https://mindmazetherapeutics.com/about/media/
+- type: BlogRSS
+  url: https://mindmazetherapeutics.com/feed/
+- type: Careers
+  url: https://mindmazetherapeutics.com/about/careers/
+- type: InvestorRelations
+  url: https://mindmazetherapeutics.com/investor-relations/
+- type: TermsOfService
+  url: https://mindmazetherapeutics.com/terms-and-conditions/
+- type: PrivacyPolicy
+  url: https://mindmazetherapeutics.com/privacy-policy-eu/
+- type: PrivacyPolicy
+  url: https://mindmazetherapeutics.com/privacy-policy-us/
+- type: CookiePolicy
+  url: https://mindmazetherapeutics.com/cookie-policy/
+- type: DataRequest
+  url: https://mindmazetherapeutics.com/personal-data-requests/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/mindmaze
+- type: Twitter
+  url: https://x.com/MindMazeTx
+- type: YouTube
+  url: https://www.youtube.com/user/MindMazeSA
+- type: Facebook
+  url: https://www.facebook.com/MindMazeTx
+- type: Instagram
+  url: https://www.instagram.com/mindmazetx
+- type: Crunchbase
+  url: https://www.crunchbase.com/organization/mindmaze
+- type: SecondaryMarket
   url: https://forgeglobal.com/mindmaze_stock/

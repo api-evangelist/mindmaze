@@ -1,0 +1,130 @@
+generated: '2026-08-01'
+method: searched
+source: mindmazetherapeutics.com product and about pages, plus derivation from openapi/ (2026-08-01)
+scope: >-
+  MindMaze Therapeutics is a regulated medical-device and digital-therapeutics manufacturer, so
+  the conformance that matters to a buyer is medical-device regulatory clearance, not API
+  standards. Regulatory posture is recorded first; the API/protocol block is recorded second and
+  marks not-applicable rather than false where there is genuinely no surface, so this file is
+  never mistaken for a compliance posture MindMaze does not claim.
+regulatory:
+- id: fda-listed
+  name: US FDA listing
+  conforms: true
+  evidence: >-
+    "The company's FDA-listed and CE-marked products are designed to address the systemic
+    shortage of specialized clinicians" - MindMaze Therapeutics about page.
+  source: https://mindmazetherapeutics.com/about/mindmaze-therapeutics/
+  note: >-
+    MindMaze states FDA listing on its own about page. This pipeline did not independently verify
+    a specific 510(k) number or device listing record; the claim is recorded as published by the
+    provider.
+- id: ce-marked
+  name: EU CE marking
+  conforms: true
+  evidence: Same about-page statement - products are described as FDA-listed and CE-marked.
+  source: https://mindmazetherapeutics.com/about/mindmaze-therapeutics/
+- id: instructions-for-use
+  name: Published Instructions for Use (IFU) programme
+  conforms: true
+  evidence: >-
+    MindMaze operates a formal IFU request route for MindMotionGO, MindPod Dolphin, MindMotion
+    Companion and Izar, committing to supply the IFU in PDF or paper at no cost within 7 calendar
+    days - the eIFU obligation pattern under EU MDR.
+  source: https://mindmazetherapeutics.com/therapy-and-monitoring/instructions-for-use/
+- id: six-listed-issuer
+  name: SIX Swiss Exchange listed issuer (MMTX)
+  conforms: true
+  evidence: >-
+    MindMaze Therapeutics Holding SA trades on the SIX Swiss Exchange under MMTX and publishes
+    ad-hoc and other regulatory disclosure through EQS. 162 ad-hoc and 147 other-IR posts were
+    counted in the content API on 2026-08-01.
+  source: https://mindmazetherapeutics.com/investor-relations/
+data_protection:
+- id: gdpr
+  conforms: true
+  evidence: >-
+    Separate EU privacy policy plus a dedicated personal-data-request route (access, erasure,
+    portability), and a cookie-consent gate on every page.
+  source: https://mindmazetherapeutics.com/privacy-policy-eu/
+- id: us-state-privacy
+  conforms: true
+  evidence: Separate US privacy policy maintained alongside the EU policy.
+  source: https://mindmazetherapeutics.com/privacy-policy-us/
+- id: hipaa
+  conforms: null
+  evidence: >-
+    Not asserted anywhere on the public site. MindMaze handles patient therapy data in US
+    clinical settings, but publishes no HIPAA statement, BAA offer or covered-entity posture.
+api_standards:
+- id: openapi
+  conforms: false
+  applicable: true
+  evidence: >-
+    MindMaze publishes no OpenAPI. openapi/mindmaze-content-openapi.yml is DERIVED by API
+    Evangelist from the live WordPress route discovery document at /wp-json/, not published by
+    MindMaze.
+- id: rest
+  conforms: true
+  applicable: true
+  evidence: >-
+    The /wp-json/ surface is a genuine resource-oriented JSON REST API with a self-describing
+    discovery document, HTTP-verb semantics and correct status codes.
+- id: rfc8288-web-linking
+  conforms: true
+  applicable: true
+  evidence: Collection responses carry an RFC 8288 Link header with rel="next"/"prev".
+- id: rfc9457-problem-details
+  conforms: false
+  applicable: true
+  evidence: >-
+    Errors use the WordPress {code, message, data.status} envelope, not
+    application/problem+json. See errors/mindmaze-problem-types.yml.
+- id: oauth2
+  conforms: false
+  applicable: false
+  evidence: No OAuth surface. The only auth scheme advertised is WordPress Application Passwords
+    (HTTP Basic), administrator-only.
+- id: openid-connect
+  conforms: false
+  applicable: false
+- id: asyncapi
+  conforms: false
+  applicable: false
+  evidence: No event, streaming or webhook surface exists.
+- id: graphql
+  conforms: false
+  applicable: false
+- id: mcp
+  conforms: false
+  applicable: false
+- id: a2a
+  conforms: false
+  applicable: false
+  evidence: No agent card at either well-known path on any host.
+- id: rfc9116-security-txt
+  conforms: false
+  applicable: true
+  evidence: /.well-known/security.txt returns 404 on every MindMaze host.
+- id: content-signals
+  conforms: true
+  applicable: true
+  evidence: >-
+    robots.txt publishes a Cloudflare Managed Content Signals policy (search=yes, ai-train=no,
+    use=reference) with an explicit Article 4 EU DSM reservation of rights, plus per-agent
+    Disallow rules for the major AI crawlers.
+  source: well-known/mindmaze-robots.txt
+- id: hl7-fhir
+  conforms: false
+  applicable: false
+  evidence: >-
+    No FHIR, HL7 v2 or SMART-on-FHIR surface is published or documented, despite MindMaze
+    operating in clinical settings alongside EHR systems.
+information_security_compliance:
+  found: false
+  note: >-
+    No trust center, SOC 2, ISO 27001, ISO 13485 or equivalent information-security
+    certification page was found by probe-security-programs.py or by site search. No Compliance
+    pointer is wired in apis.yml - the FDA/CE claims above are medical-device regulatory
+    clearances published as marketing copy, not an audited information-security compliance
+    programme with a published attestation.

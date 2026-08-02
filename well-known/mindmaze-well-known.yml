@@ -1,0 +1,109 @@
+generated: '2026-08-01'
+method: probed
+source: live probes of /.well-known/ and contract-discovery paths on MindMaze hosts
+result: >-
+  No /.well-known/ discovery document of any kind is published on any MindMaze host. The
+  only machine-readable surface found is the WordPress core REST API, exposed anonymously
+  at https://mindmazetherapeutics.com/wp-json/ - captured as
+  openapi/mindmaze-content-openapi.yml. A Cloudflare-managed Content Signals policy IS
+  published in robots.txt and is saved here verbatim.
+hosts:
+- host: https://mindmazetherapeutics.com
+  platform: WordPress (Cloudflare-fronted)
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/mcp.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /openapi.yaml
+    status: 404
+  - path: /swagger.json
+    status: 404
+  - path: /api-docs
+    status: 404
+  - path: /docs
+    status: 404
+  - path: /redoc
+    status: 404
+  - path: /graphql
+    status: 404
+  - path: /api
+    status: 404
+  - path: /robots.txt
+    status: 200
+    file: mindmaze-robots.txt
+    note: >-
+      Carries a Cloudflare Managed Content Signals block - "Content-Signal:
+      search=yes,ai-train=no,use=reference" for User-agent: * - plus explicit Disallow for
+      Amazonbot, Applebot-Extended, Bytespider, CCBot, ClaudeBot,
+      CloudflareBrowserRenderingCrawler, Google-Extended, GPTBot and meta-externalagent, and
+      a Crawl-delay of 10. The header text asserts these are express reservations of rights
+      under Article 4 of EU Directive 2019/790.
+  - path: /sitemap.xml
+    status: 200
+    note: Yoast-generated sitemap index.
+  - path: /feed/
+    status: 200
+    note: WordPress RSS 2.0 feed for mindmazetherapeutics.com news.
+  - path: /wp-json/
+    status: 200
+    note: >-
+      WordPress REST API discovery document - 18 namespaces, 466 registered routes. This is
+      the only machine-readable contract MindMaze serves; saved verbatim to
+      openapi/mindmaze-content-wp-routes-original.json and derived into
+      openapi/mindmaze-content-openapi.yml.
+- host: https://mindmaze.com
+  note: >-
+    Legacy corporate domain. Resolves and serves HTTP 302 to mindmazetherapeutics.com; every
+    path above returns the identical result to the primary host after redirect.
+- host: https://www.mindmaze.com
+  note: identical results to mindmaze.com (same redirect target).
+hosts_that_do_not_resolve:
+- api.mindmaze.com
+- developer.mindmaze.com
+- docs.mindmaze.com
+- portal.mindmaze.com
+- app.mindmaze.com
+- companion.mindmaze.com
+- cloud.mindmaze.com
+- status.mindmaze.com
+- api.mindmazetherapeutics.com
+- trust.mindmazetherapeutics.com
+contract_discovery:
+  openapi: >-
+    not published by MindMaze. A real anonymous REST surface WAS found at
+    /wp-json/ (WordPress core) and is captured as a derived OpenAPI 3.1.0. No product,
+    clinical or device API contract exists.
+  graphql: not found - /graphql returns 404 on every host and no GraphQL surface is documented
+  mcp: not found - no hosted MCP server, no mcp. subdomain, nothing in the MCP registries
+  a2a_agent_card: >-
+    not found - both /.well-known/agent-card.json and the legacy /.well-known/agent.json
+    return 404 on every host. No a2a/ artifact is written.
+  asyncapi: >-
+    not found - no event, streaming or webhook surface is documented. The only push surface
+    is the WordPress RSS feed at /feed/, which is syndication, not an event contract.
+  conclusion: >-
+    Completed negative result for a product API, and a completed positive result for the
+    corporate content API. MindMaze Therapeutics publishes no developer program.
+x-evidence:
+  fetched: '2026-08-01'
+  method: curl GET with redirect-following, 12-30s timeout, apex + www + legacy domain
+  dns_method: dig +short A on candidate API/docs/app subdomains

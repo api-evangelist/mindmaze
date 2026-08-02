@@ -1,0 +1,89 @@
+generated: '2026-08-01'
+method: derived
+source: mcp/mindmaze-mcp.yml + openapi/mindmaze-content-openapi.yml
+status: candidate
+important: >-
+  MindMaze Therapeutics operates NO MCP server and NO GraphQL surface. This crosswalk therefore
+  binds the CANDIDATE tool proposal in mcp/mindmaze-mcp.yml to the real OpenAPI operations that
+  would back it, so each proposed tool inherits a real inputSchema instead of a guessed one. It
+  is not a record of a published agent surface, and no MCPServer pointer is wired in apis.yml.
+surfaces:
+  openapi:
+    file: openapi/mindmaze-content-openapi.yml
+    operations: 17
+    gated: false
+    note: All 17 operations verified anonymous HTTP 200 on 2026-08-01.
+  graphql:
+    endpoint: null
+    note: /graphql returns 404 on every MindMaze host. No GraphQL surface exists.
+  mcp:
+    url: null
+    note: No hosted or remote MCP server. /.well-known/mcp.json returns 404 on every host.
+crosswalk:
+- tool: list_mindmaze_news
+  category: disclosure
+  rest: [listPosts]
+  binding: rest
+  confidence: high
+  note: >-
+    Inherits the full parameter set of GET /wp/v2/posts - page, per_page, search, after, before,
+    order, orderby, slug, _fields, categories, tags.
+- tool: get_mindmaze_news_item
+  category: disclosure
+  rest: [getPost]
+  binding: rest
+  confidence: high
+- tool: list_mindmaze_pages
+  category: content
+  rest: [listPages]
+  binding: rest
+  confidence: high
+- tool: get_mindmaze_page
+  category: content
+  rest: [getPage]
+  binding: rest
+  confidence: high
+- tool: search_mindmaze_content
+  category: search
+  rest: [searchContent]
+  binding: rest
+  confidence: high
+- tool: list_mindmaze_categories
+  category: taxonomy
+  rest: [listCategories]
+  binding: rest
+  confidence: high
+  note: >-
+    A tool implementation should call this first to resolve disclosure category ids rather than
+    hardcoding them.
+- tool: list_mindmaze_media
+  category: content
+  rest: [listMedia]
+  binding: rest
+  confidence: high
+  note: mime_type=application/pdf isolates investor presentations and financial reports.
+mcp_only: []
+mcp_only_note: >-
+  Empty by construction - every candidate tool was derived from an OpenAPI operation, so no tool
+  can exist without a backing REST operation.
+rest_only:
+- operations: [getApiIndex, getNamespaceIndex, listTaxonomies, listContentTypes, listStatuses]
+  capability: discovery
+  reason: >-
+    Self-describing metadata. Useful to a client at build time, not to an agent at call time.
+- operations: [getMediaItem]
+  capability: content
+  reason: Single-record media fetch; the list operation already returns source_url.
+- operations: [getCategory, listTags, getTag]
+  capability: taxonomy
+  reason: >-
+    Redundant with list_mindmaze_categories for agent purposes; only one tag term is registered.
+- operations: [getOEmbed]
+  capability: embedding
+  reason: Presentation-layer helper, not an information-retrieval capability.
+coverage:
+  tools_named: 7
+  tools_bound: 7
+  mcp_only: 0
+  rest_operations_total: 17
+  rest_operations_with_a_tool: 7

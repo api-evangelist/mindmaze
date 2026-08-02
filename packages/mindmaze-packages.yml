@@ -1,0 +1,32 @@
+generated: '2026-08-01'
+method: searched
+source: registry searches of npm, PyPI, RubyGems, crates.io, Packagist and GitHub (2026-08-01)
+notes: >-
+  MindMaze Therapeutics publishes no client SDK in any public package registry, because it
+  publishes no public API. No `SDKs` pointer is wired in apis.yml and the sdk_count checks
+  are correctly left unearned. MindMaze products are regulated medical devices distributed
+  as clinical hardware and mobile/desktop applications, not as developer libraries.
+packages: []
+registries_checked:
+- registry: npm
+  query: mindmaze
+  result: 0 packages
+- registry: pypi
+  query: mindmaze
+  result: 404 - no project
+- registry: rubygems
+  query: mindmaze
+  result: no results
+- registry: crates.io
+  query: mindmaze
+  result: no results
+- registry: packagist
+  query: mindmaze
+  result: no results
+- registry: github
+  query: orgs/mindmaze, orgs/MindMaze
+  result: >-
+    404 - no GitHub organization exists. github.com/mindmaze is an unrelated personal user
+    account (id 2105534, created 2012-08-06) with 0 public repositories, no name, company or
+    bio, and nothing associating it with MindMaze Therapeutics. No GitHubOrganization pointer
+    is wired.

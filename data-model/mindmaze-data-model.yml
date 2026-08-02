@@ -1,0 +1,109 @@
+generated: '2026-08-01'
+method: derived
+source: openapi/mindmaze-content-openapi.yml
+scope: >-
+  Entity-relationship graph of the MindMaze Therapeutics Content API. Derived from the schema
+  $ref links and id-reference fields in the captured OpenAPI, and from the live
+  /wp/v2/types and /wp/v2/taxonomies discovery documents.
+entities:
+- name: Post
+  rest_base: posts
+  path: /wp/v2/posts
+  id_field: id
+  id_type: integer
+  count_observed: 450
+  description: >-
+    A MindMaze news item. The corpus is dominated by SIX Swiss Exchange disclosure - EQS
+    ad-hoc announcements, other investor-relations news - alongside press releases, in-the-media
+    coverage, events, testimonials and product announcements.
+- name: Page
+  rest_base: pages
+  path: /wp/v2/pages
+  id_field: id
+  id_type: integer
+  count_observed: 49
+  description: Marketing, platform, product, research and investor-relations pages.
+- name: MediaItem
+  rest_base: media
+  path: /wp/v2/media
+  id_field: id
+  id_type: integer
+  count_observed: 1070
+  description: >-
+    Files in the media library - images, and the PDF attachments behind investor
+    presentations and financial reports.
+- name: Term
+  rest_base: categories, tags
+  path: /wp/v2/categories, /wp/v2/tags
+  id_field: id
+  id_type: integer
+  count_observed: 11 categories, 1 tag
+  description: Taxonomy terms classifying posts.
+- name: Author
+  rest_base: users
+  path: /wp/v2/users
+  id_field: id
+  id_type: integer
+  count_observed: 4
+  in_captured_spec: false
+  description: >-
+    WordPress author records. Anonymously readable on this host but excluded from the captured
+    OpenAPI and from examples/ - see the data_exposure note in
+    conventions/mindmaze-conventions.yml.
+relationships:
+- from: Post
+  to: Term
+  type: has_many
+  via: categories
+  note: Array of category term ids on each post.
+- from: Post
+  to: Term
+  type: has_many
+  via: tags
+  note: Array of tag term ids on each post.
+- from: Post
+  to: MediaItem
+  type: has_one
+  via: featured_media
+  note: Numeric id of the post's featured image, 0 when unset.
+- from: Post
+  to: Author
+  type: belongs_to
+  via: author
+- from: Page
+  to: Page
+  type: belongs_to
+  via: parent
+  note: Self-referencing hierarchy - the site nests pages under /about/, /investor-relations/,
+    /therapy-and-monitoring/ and /research-and-innovation/.
+- from: MediaItem
+  to: Post
+  type: belongs_to
+  via: post
+  note: The post or page the attachment was uploaded to, when attached.
+- from: Term
+  to: Term
+  type: belongs_to
+  via: parent
+  note: Categories are hierarchical; tags are flat.
+vocabulary:
+  categories:
+  - {id: 24, slug: eqs-ad-hoc, name: Ad hoc news, count: 162}
+  - {id: 23, slug: eqs, name: EQS, count: 309}
+  - {id: 25, slug: eqs-other-ir, name: Other IR news, count: 147}
+  - {id: 9, slug: in-the-media, name: In the media, count: 92}
+  - {id: 8, slug: press-releases, name: Press releases, count: 27}
+  - {id: 10, slug: events, name: Events, count: 17}
+  - {id: 11, slug: testimonials, name: Testimonials, count: 7}
+  - {id: 16, slug: products, name: Products, count: 2}
+  - {id: 20, slug: ad-hoc-news, name: Ad hoc news, count: 0}
+  - {id: 22, slug: other-ir-news, name: Other IR news, count: 0}
+  - {id: 1, slug: healthcare, name: Healthcare, count: 0}
+  note: >-
+    Counts observed 2026-08-01. The three zero-count terms are legacy duplicates superseded by
+    the eqs-* terms created when the EQS newsfeed integration was wired up.
+  source: examples/mindmaze-categories.json
+custom_post_types: []
+custom_post_types_note: >-
+  MindMaze registers no custom public post type. Every entity above is WordPress core - there
+  is no product catalogue, clinical, device or patient entity exposed through this API.

@@ -1,0 +1,63 @@
+generated: '2026-08-01'
+method: derived
+source: openapi/mindmaze-content-openapi.yml
+status: candidate
+summary: >-
+  No official hosted or remote Model Context Protocol server exists for MindMaze Therapeutics.
+  Searches of mindmazetherapeutics.com, the MCP registries, npm @modelcontextprotocol, and every
+  developer-shaped MindMaze hostname found nothing; /.well-known/mcp.json returns 404 on every
+  host and MindMaze has no GitHub organization. The tool set below is DERIVED by API Evangelist
+  from the one public read surface as a proposal only. It is not published by MindMaze and no
+  MCPServer pointer is wired in apis.yml, because no server exists.
+server: null
+transport: null
+url: null
+auth:
+  type: none
+  note: The backing surface is anonymous and read-only.
+candidate_tools:
+- name: list_mindmaze_news
+  description: >-
+    List MindMaze Therapeutics news items, filterable by disclosure category - EQS ad-hoc
+    announcements (24), EQS (23), other IR news (25), press releases (8), in-the-media (9),
+    events (10), testimonials (11), products (16).
+  source_operation: openapi/mindmaze-content-openapi.yml#listPosts
+  maps_to: GET /wp/v2/posts
+- name: get_mindmaze_news_item
+  description: Retrieve the full text of a single MindMaze news item or regulatory announcement.
+  source_operation: openapi/mindmaze-content-openapi.yml#getPost
+  maps_to: GET /wp/v2/posts/{id}
+- name: list_mindmaze_pages
+  description: List the marketing, platform, product, research and investor-relations pages.
+  source_operation: openapi/mindmaze-content-openapi.yml#listPages
+  maps_to: GET /wp/v2/pages
+- name: get_mindmaze_page
+  description: Retrieve the full text of a single mindmazetherapeutics.com page.
+  source_operation: openapi/mindmaze-content-openapi.yml#getPage
+  maps_to: GET /wp/v2/pages/{id}
+- name: search_mindmaze_content
+  description: Search across all published MindMaze content and return titles, urls and types.
+  source_operation: openapi/mindmaze-content-openapi.yml#searchContent
+  maps_to: GET /wp/v2/search
+- name: list_mindmaze_categories
+  description: List the disclosure and content categories with their record counts.
+  source_operation: openapi/mindmaze-content-openapi.yml#listCategories
+  maps_to: GET /wp/v2/categories
+- name: list_mindmaze_media
+  description: >-
+    List media library records, including the PDF attachments behind investor presentations and
+    financial reports. Filter by mime_type=application/pdf.
+  source_operation: openapi/mindmaze-content-openapi.yml#listMedia
+  maps_to: GET /wp/v2/media
+excluded_from_candidate_tools:
+- route: GET /wp/v2/users
+  reason: >-
+    Returns author personal data anonymously. Excluded from the captured OpenAPI and from any
+    proposed tool surface - see the data_exposure note in conventions/mindmaze-conventions.yml.
+agent_guidance:
+  content_signals: >-
+    mindmazetherapeutics.com publishes a Content Signals policy of search=yes, ai-train=no,
+    use=reference and explicitly disallows GPTBot, ClaudeBot, CCBot, Google-Extended and peers
+    in robots.txt. Any agent built on this surface should treat the content as reference-only
+    and must not use it for model training.
+  file: well-known/mindmaze-robots.txt

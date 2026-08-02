@@ -1,0 +1,46 @@
+generated: '2026-08-01'
+method: derived
+source: openapi/mindmaze-content-openapi.yml + the live API index at https://mindmazetherapeutics.com/wp-json/
+note: >-
+  derive-authentication.py produced no profile for this provider because the captured OpenAPI
+  declares no securitySchemes - correctly, since every captured operation is anonymous. This
+  file is written by hand from the same evidence so the auth model is recorded rather than
+  silently absent.
+summary:
+  types: [none, http]
+  api_key_in: []
+  oauth2_flows: []
+  public_read: true
+  developer_credential_available: false
+schemes:
+- name: anonymous
+  type: none
+  applies_to: every operation in openapi/mindmaze-content-openapi.yml
+  detail: >-
+    All 17 captured operations return HTTP 200 with no credential. Verified live on 2026-08-01
+    against https://mindmazetherapeutics.com/wp-json.
+  sources: [openapi/mindmaze-content-openapi.yml]
+- name: application-passwords
+  type: http
+  scheme: basic
+  applies_to: write and administrative routes, excluded from the captured OpenAPI
+  authorization_endpoint: https://mindmazetherapeutics.com/wp-admin/authorize-application.php
+  detail: >-
+    The API index advertises WordPress Application Passwords as the only authentication method
+    on the host. Credentials are issued from wp-admin to existing WordPress users - there is no
+    self-serve sign-up, no developer account and no API key programme. Routes behind it
+    (settings, themes, plugins, menus, block-types, widgets, all write methods) return
+    {"code":"rest_forbidden","data":{"status":401}} anonymously.
+  sources: [https://mindmazetherapeutics.com/wp-json/]
+  self_serve: false
+oauth:
+  present: false
+  detail: >-
+    No OAuth 2.0 or OpenID Connect surface. /.well-known/oauth-authorization-server,
+    /.well-known/oauth-protected-resource and /.well-known/openid-configuration all return 404
+    on every MindMaze host. No scopes/ artifact is written - there is no scope surface to record.
+docs: null
+docs_note: >-
+  MindMaze publishes no authentication documentation, because it publishes no developer
+  programme. Everything above is observed behaviour, not a documented contract, and MindMaze
+  makes no commitment to keep it stable.

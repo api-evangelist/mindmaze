@@ -1,0 +1,62 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the MindMaze Therapeutics Content API
+  version: 1.0.0
+extends: openapi/mindmaze-content-openapi.yml
+x-provenance:
+  generated: '2026-08-01'
+  method: generated
+  source: openapi/mindmaze-content-openapi.yml
+  note: >-
+    Captures the enhancements API Evangelist applied on top of the live WordPress route
+    discovery document. The original document is preserved verbatim at
+    openapi/mindmaze-content-wp-routes-original.json and is never mutated.
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: mindmaze
+    x-apievangelist-surface: corporate-content
+    x-apievangelist-derived-from: https://mindmazetherapeutics.com/wp-json/
+    x-apievangelist-verified: '2026-08-01'
+    x-apievangelist-note: >-
+      Derived by API Evangelist from the anonymous WordPress core REST API. Not published by
+      MindMaze Therapeutics, and not a product, clinical or device API.
+- target: $.info
+  update:
+    x-content-signals:
+      source: https://mindmazetherapeutics.com/robots.txt
+      search: 'yes'
+      ai-train: 'no'
+      use: reference
+      disallowed_agents: [Amazonbot, Applebot-Extended, Bytespider, CCBot, ClaudeBot,
+        CloudflareBrowserRenderingCrawler, Google-Extended, GPTBot, meta-externalagent]
+      rights_reservation: EU Directive 2019/790 Article 4
+- target: $.servers[0]
+  update:
+    x-edge: Cloudflare
+    x-observed-headers: [x-wp-total, x-wp-totalpages, link, x-robots-tag, cf-ray]
+- target: $.paths['/wp/v2/posts'].get
+  update:
+    x-disclosure-categories:
+      eqs-ad-hoc: 24
+      eqs: 23
+      eqs-other-ir: 25
+      press-releases: 8
+      in-the-media: 9
+      events: 10
+      testimonials: 11
+      products: 16
+    x-observed-total: 450
+- target: $.paths['/wp/v2/pages'].get
+  update:
+    x-observed-total: 49
+- target: $.paths['/wp/v2/media'].get
+  update:
+    x-observed-total: 1070
+- target: $.paths['/wp/v2/categories'].get
+  update:
+    x-observed-total: 11
+- target: $.components.schemas.Error
+  update:
+    x-error-catalog: errors/mindmaze-problem-types.yml
+    x-rfc9457: false

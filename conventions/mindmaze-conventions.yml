@@ -1,0 +1,107 @@
+generated: '2026-08-01'
+method: derived
+source: openapi/mindmaze-content-openapi.yml + live response headers observed 2026-08-01
+scope: >-
+  Cross-cutting request/response semantics of the only machine-readable surface MindMaze
+  Therapeutics serves - the anonymous WordPress core REST API at
+  https://mindmazetherapeutics.com/wp-json. These are WordPress core conventions, observed
+  live on the MindMaze host; MindMaze publishes no API convention documentation of its own.
+authentication:
+  style: none for reads
+  detail: >-
+    Every operation captured in openapi/mindmaze-content-openapi.yml returns 200 anonymously.
+    Write and administrative routes exist on the host and require WordPress Application
+    Passwords (HTTP Basic) - the API index advertises the authorization endpoint at
+    /wp-admin/authorize-application.php - but those credentials are issued only to site
+    administrators and are not a public developer credential.
+  see: authentication/mindmaze-authentication.yml
+idempotency:
+  supported: false
+  detail: >-
+    No idempotency key header or parameter is offered or documented. The public surface is
+    read-only (Allow: GET on collection routes), so idempotency is a property of the HTTP
+    method rather than a contract. No Idempotency pointer is wired in apis.yml.
+pagination:
+  style: page-number
+  params:
+  - name: page
+    default: 1
+    minimum: 1
+  - name: per_page
+    default: 10
+    minimum: 1
+    maximum: 100
+  response_headers:
+  - name: X-WP-Total
+    meaning: total number of matching records
+  - name: X-WP-TotalPages
+    meaning: total pages available at the current per_page
+  - name: Link
+    meaning: RFC 8288 Link header carrying rel="next" and rel="prev"
+  observed: 'GET /wp/v2/posts?per_page=1 returned X-WP-Total: 450, X-WP-TotalPages: 450 and a
+    Link header with rel="next" on 2026-08-01.'
+sparse_fields:
+  supported: true
+  param: _fields
+  detail: Comma-separated list of top-level fields to return, e.g. _fields=id,date,slug,link,title,categories.
+embedding:
+  supported: true
+  param: _embed
+  detail: >-
+    WordPress core _embed / _links expansion inlines linked resources (author, featured media,
+    terms) under _embedded. Note that _embed on posts inlines author records; see the
+    data_exposure note below.
+filtering:
+  common_params: [search, slug, order, orderby, after, before]
+  collection_specific:
+    posts: [categories, tags]
+    media: [media_type, mime_type]
+  ordering:
+    order: [asc, desc]
+    orderby: [author, date, id, include, modified, parent, relevance, slug, title]
+search:
+  endpoint: /wp/v2/search
+  detail: Cross-content-type search returning id, title, url, type and subtype per hit.
+versioning:
+  scheme: namespace-in-path
+  current: wp/v2
+  detail: >-
+    The version is the WordPress core REST namespace, not a MindMaze version. MindMaze
+    publishes no API versioning policy, no deprecation policy and no Sunset/Deprecation
+    header support.
+  see: lifecycle/mindmaze-lifecycle.yml
+error_envelope:
+  format: wordpress-rest
+  rfc9457: false
+  content_type: application/json
+  shape: '{ code: string, message: string, data: { status: integer, params?: object, details?:
+    object } }'
+  see: errors/mindmaze-problem-types.yml
+rate_limits:
+  documented: false
+  observed_signal: none
+  detail: >-
+    No X-RateLimit-* or Retry-After headers were observed. The host is fronted by Cloudflare
+    (cf-ray, cf-cache-status: DYNAMIC on API responses), so any throttling is edge-imposed and
+    undocumented. robots.txt requests a Crawl-delay of 10 for all user agents.
+request_tracing:
+  provider_request_id: none
+  detail: No first-party request-id header. Cloudflare returns a cf-ray identifier per response.
+caching:
+  detail: 'API responses carry x-robots-tag: noindex and cf-cache-status: DYNAMIC (uncached at
+    the edge).'
+content_signals:
+  detail: >-
+    robots.txt publishes a Cloudflare Managed Content Signals policy - search=yes, ai-train=no,
+    use=reference - and explicitly disallows GPTBot, ClaudeBot, CCBot, Google-Extended,
+    Applebot-Extended, Amazonbot, Bytespider and meta-externalagent. Agents consuming this API
+    should honour that reservation of rights.
+  file: well-known/mindmaze-robots.txt
+data_exposure:
+  note: >-
+    GET /wp/v2/users returns 200 anonymously with 4 author records (display names, slugs,
+    avatars). This is WordPress default behaviour, not a MindMaze design decision. The route is
+    deliberately NOT included in openapi/mindmaze-content-openapi.yml and no example payload is
+    stored in this repo, so the pipeline records the exposure without republishing the personal
+    data. Recommended remediation for the provider - disable the users endpoint for anonymous
+    callers.
