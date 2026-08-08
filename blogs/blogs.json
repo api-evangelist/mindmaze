@@ -1,0 +1,21 @@
+{
+  "repo": "mindmaze",
+  "feeds": [
+    {
+      "source": "https://mindmazetherapeutics.com/about/contact/",
+      "feed_url": "https://mindmazetherapeutics.com/about/contact/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
+      "source": "https://mindmazetherapeutics.com/about/media/",
+      "feed_url": "https://mindmazetherapeutics.com/about/media/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-08-06T14:08:46Z"
+}
