@@ -89,6 +89,8 @@ x-enrichment:
   artifacts_added: 26
   pass: local-v1
 common:
+- type: MCPServer
+  url: mcp/mindmaze-mcp.yml
 - type: AgenticAccess
   url: agentic-access/mindmaze-agentic-access.yml
 - type: DomainSecurity
