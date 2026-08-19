@@ -1,0 +1,601 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MindMaze Therapeutics Content API",
+    "version": "wp/v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discovery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the API index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mindmazetherapeutics.com/wp-json/"
+          },
+          "docs": "The WordPress REST API discovery document - site name, description, URL, the registered namespaces and every registered route with its methods, arguments and argument schemas. This is the self-describing root this OpenAPI was derived from."
+        },
+        {
+          "info": {
+            "name": "Get the wp/v2 namespace index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mindmazetherapeutics.com/wp-json/wp/v2"
+          },
+          "docs": "The route index scoped to the wp/v2 namespace."
+        },
+        {
+          "info": {
+            "name": "List taxonomies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mindmazetherapeutics.com/wp-json/wp/v2/taxonomies"
+          },
+          "docs": "The registered taxonomies and the content types each applies to."
+        },
+        {
+          "info": {
+            "name": "List content types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mindmazetherapeutics.com/wp-json/wp/v2/types"
+          },
+          "docs": "The registered content types and their REST base paths. MindMaze registers no custom public post type - the corpus is core posts, pages and media."
+        },
+        {
+          "info": {
+            "name": "List post statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mindmazetherapeutics.com/wp-json/wp/v2/statuses"
+          },
+          "docs": "The publicly queryable post statuses."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Posts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List posts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mindmazetherapeutics.com/wp-json/wp/v2/posts",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Current page of the collection."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to be returned in the result set."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to those matching a string."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Limit response to posts published after a given ISO 8601 compliant date."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Limit response to posts published before a given ISO 8601 compliant date."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order sort attribute ascending or descending."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort collection by object attribute."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to items with one or more specific slugs."
+              },
+              {
+                "name": "_fields",
+                "value": "id,date,slug,link,title,categories",
+                "type": "query",
+                "description": "Limit the fields returned in the response, as a comma-separated list."
+              },
+              {
+                "name": "categories",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to items assigned to the given category term ids."
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to items assigned to the given tag term ids."
+              }
+            ]
+          },
+          "docs": "MindMaze Therapeutics news items. 450 published records on 2026-08-01. Filter by category to isolate a disclosure stream: 24 = EQS ad-hoc news, 23 = EQS, 25 = Other IR news, 8 = Press releases, 9 = In the media, 10 = Events, 11 = Testimonials, 16 = Products."
+        },
+        {
+          "info": {
+            "name": "Get a post",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mindmazetherapeutics.com/wp-json/wp/v2/posts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier for the object."
+              },
+              {
+                "name": "_fields",
+                "value": "id,date,slug,link,title,categories",
+                "type": "query",
+                "description": "Limit the fields returned in the response, as a comma-separated list."
+              }
+            ]
+          },
+          "docs": "Retrieve a single MindMaze news item, press release or regulatory announcement by its numeric id."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List pages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mindmazetherapeutics.com/wp-json/wp/v2/pages",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Current page of the collection."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to be returned in the result set."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to those matching a string."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order sort attribute ascending or descending."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort collection by object attribute."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to items with one or more specific slugs."
+              },
+              {
+                "name": "_fields",
+                "value": "id,date,slug,link,title,categories",
+                "type": "query",
+                "description": "Limit the fields returned in the response, as a comma-separated list."
+              }
+            ]
+          },
+          "docs": "Marketing, platform, product, research and investor-relations pages. 49 published records on 2026-08-01."
+        },
+        {
+          "info": {
+            "name": "Get a page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mindmazetherapeutics.com/wp-json/wp/v2/pages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier for the object."
+              },
+              {
+                "name": "_fields",
+                "value": "id,date,slug,link,title,categories",
+                "type": "query",
+                "description": "Limit the fields returned in the response, as a comma-separated list."
+              }
+            ]
+          },
+          "docs": "Retrieve a single mindmazetherapeutics.com page by its numeric id."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Media",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List media",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mindmazetherapeutics.com/wp-json/wp/v2/media",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Current page of the collection."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to be returned in the result set."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to those matching a string."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Limit response to posts published after a given ISO 8601 compliant date."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Limit response to posts published before a given ISO 8601 compliant date."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order sort attribute ascending or descending."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort collection by object attribute."
+              },
+              {
+                "name": "_fields",
+                "value": "id,date,slug,link,title,categories",
+                "type": "query",
+                "description": "Limit the fields returned in the response, as a comma-separated list."
+              },
+              {
+                "name": "media_type",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to attachments of a particular media type."
+              },
+              {
+                "name": "mime_type",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to attachments of a particular MIME type."
+              }
+            ]
+          },
+          "docs": "Images, PDFs and other files in the MindMaze media library, including investor presentations and financial report attachments. 1,070 records on 2026-08-01."
+        },
+        {
+          "info": {
+            "name": "Get a media item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mindmazetherapeutics.com/wp-json/wp/v2/media/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier for the object."
+              },
+              {
+                "name": "_fields",
+                "value": "id,date,slug,link,title,categories",
+                "type": "query",
+                "description": "Limit the fields returned in the response, as a comma-separated list."
+              }
+            ]
+          },
+          "docs": "Retrieve a single media library record by its numeric id."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Taxonomy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mindmazetherapeutics.com/wp-json/wp/v2/categories",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Current page of the collection."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to be returned in the result set."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to those matching a string."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to items with one or more specific slugs."
+              },
+              {
+                "name": "_fields",
+                "value": "id,date,slug,link,title,categories",
+                "type": "query",
+                "description": "Limit the fields returned in the response, as a comma-separated list."
+              }
+            ]
+          },
+          "docs": "The 11 category terms used to classify MindMaze posts. The disclosure-bearing terms are: eqs (309), eqs-ad-hoc (162), eqs-other-ir (147), in-the-media (92), press-releases (27), events (17), testimonials (7), products (2)."
+        },
+        {
+          "info": {
+            "name": "Get a category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mindmazetherapeutics.com/wp-json/wp/v2/categories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier for the object."
+              }
+            ]
+          },
+          "docs": "Retrieve a single category term by its numeric id."
+        },
+        {
+          "info": {
+            "name": "List tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mindmazetherapeutics.com/wp-json/wp/v2/tags",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Current page of the collection."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to be returned in the result set."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to those matching a string."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to items with one or more specific slugs."
+              },
+              {
+                "name": "_fields",
+                "value": "id,date,slug,link,title,categories",
+                "type": "query",
+                "description": "Limit the fields returned in the response, as a comma-separated list."
+              }
+            ]
+          },
+          "docs": "Post tag terms. One term is registered on 2026-08-01."
+        },
+        {
+          "info": {
+            "name": "Get a tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mindmazetherapeutics.com/wp-json/wp/v2/tags/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique numeric identifier for the object."
+              }
+            ]
+          },
+          "docs": "Retrieve a single tag term by its numeric id."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search site content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mindmazetherapeutics.com/wp-json/wp/v2/search",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Current page of the collection."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to be returned in the result set."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "The search term."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to items of an object type."
+              },
+              {
+                "name": "subtype",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to items of one or more object subtypes."
+              }
+            ]
+          },
+          "docs": "Cross-content-type search over published mindmazetherapeutics.com content, returning id, title, url, type and subtype for each hit."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "oEmbed",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get an oEmbed response",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mindmazetherapeutics.com/wp-json/oembed/1.0/embed",
+            "params": [
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "The URL of the resource for which to fetch oEmbed data."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "The oEmbed format to use."
+              },
+              {
+                "name": "maxwidth",
+                "value": "",
+                "type": "query",
+                "description": "The maximum width of the embed frame in pixels."
+              }
+            ]
+          },
+          "docs": "Returns the oEmbed representation of a mindmazetherapeutics.com URL."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

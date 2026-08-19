@@ -2,13 +2,12 @@ generated: '2026-08-01'
 method: derived
 source: openapi/mindmaze-content-openapi.yml
 status: candidate
-summary: >-
-  No official hosted or remote Model Context Protocol server exists for MindMaze Therapeutics.
-  Searches of mindmazetherapeutics.com, the MCP registries, npm @modelcontextprotocol, and every
-  developer-shaped MindMaze hostname found nothing; /.well-known/mcp.json returns 404 on every
-  host and MindMaze has no GitHub organization. The tool set below is DERIVED by API Evangelist
-  from the one public read surface as a proposal only. It is not published by MindMaze and no
-  MCPServer pointer is wired in apis.yml, because no server exists.
+summary: No official hosted or remote Model Context Protocol server exists for MindMaze Therapeutics.
+  Searches of mindmazetherapeutics.com, the MCP registries, npm @modelcontextprotocol, and every developer-shaped
+  MindMaze hostname found nothing; /.well-known/mcp.json returns 404 on every host and MindMaze has no
+  GitHub organization. The tool set below is DERIVED by API Evangelist from the one public read surface
+  as a proposal only. It is not published by MindMaze and no MCPServer pointer is wired in apis.yml, because
+  no server exists.
 server: null
 transport: null
 url: null
@@ -17,10 +16,9 @@ auth:
   note: The backing surface is anonymous and read-only.
 candidate_tools:
 - name: list_mindmaze_news
-  description: >-
-    List MindMaze Therapeutics news items, filterable by disclosure category - EQS ad-hoc
-    announcements (24), EQS (23), other IR news (25), press releases (8), in-the-media (9),
-    events (10), testimonials (11), products (16).
+  description: List MindMaze Therapeutics news items, filterable by disclosure category - EQS ad-hoc announcements
+    (24), EQS (23), other IR news (25), press releases (8), in-the-media (9), events (10), testimonials
+    (11), products (16).
   source_operation: openapi/mindmaze-content-openapi.yml#listPosts
   maps_to: GET /wp/v2/posts
 - name: get_mindmaze_news_item
@@ -44,20 +42,22 @@ candidate_tools:
   source_operation: openapi/mindmaze-content-openapi.yml#listCategories
   maps_to: GET /wp/v2/categories
 - name: list_mindmaze_media
-  description: >-
-    List media library records, including the PDF attachments behind investor presentations and
-    financial reports. Filter by mime_type=application/pdf.
+  description: List media library records, including the PDF attachments behind investor presentations
+    and financial reports. Filter by mime_type=application/pdf.
   source_operation: openapi/mindmaze-content-openapi.yml#listMedia
   maps_to: GET /wp/v2/media
 excluded_from_candidate_tools:
 - route: GET /wp/v2/users
-  reason: >-
-    Returns author personal data anonymously. Excluded from the captured OpenAPI and from any
-    proposed tool surface - see the data_exposure note in conventions/mindmaze-conventions.yml.
+  reason: Returns author personal data anonymously. Excluded from the captured OpenAPI and from any proposed
+    tool surface - see the data_exposure note in conventions/mindmaze-conventions.yml.
 agent_guidance:
-  content_signals: >-
-    mindmazetherapeutics.com publishes a Content Signals policy of search=yes, ai-train=no,
-    use=reference and explicitly disallows GPTBot, ClaudeBot, CCBot, Google-Extended and peers
-    in robots.txt. Any agent built on this surface should treat the content as reference-only
-    and must not use it for model training.
+  content_signals: mindmazetherapeutics.com publishes a Content Signals policy of search=yes, ai-train=no,
+    use=reference and explicitly disallows GPTBot, ClaudeBot, CCBot, Google-Extended and peers in robots.txt.
+    Any agent built on this surface should treat the content as reference-only and must not use it for
+    model training.
   file: well-known/mindmaze-robots.txt
+deployment:
+  mode: none
+  verified: derived
+  checked: '2026-08-12'
+  source: catalog MCP census
