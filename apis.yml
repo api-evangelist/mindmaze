@@ -49,32 +49,166 @@ tags_raw:
 - Parkinsons Disease
 - Switzerland
 apis:
-- name: MindMaze Therapeutics Content API
+- aid: mindmaze:mindmaze-discovery-api
+  name: MindMaze Discovery API
   description: >-
-    The public, anonymous WordPress REST API behind mindmazetherapeutics.com. It is not a
-    MindMaze product, clinical or device API - none exists - but it is a real machine-readable
-    surface, and because MindMaze Therapeutics Holding SA is listed on the SIX Swiss Exchange
-    (MMTX) it carries the company's regulatory disclosure stream: 309 EQS posts, 162 EQS ad-hoc
-    announcements, 147 other investor-relations items, 27 press releases, 92 in-the-media
-    entries, 17 events, 7 testimonials and 2 product announcements, alongside 49 marketing,
-    platform, product and research pages and 1,070 media records including investor-presentation
-    and financial-report PDFs. Every operation captured here was verified to return HTTP 200
-    anonymously on 2026-08-01; write and administrative routes exist on the host but return 401
-    rest_forbidden and are deliberately excluded, as is /wp/v2/users, which exposes author
-    personal data anonymously.
+    Self-describing metadata: the API index, registered content types, taxonomies and post statuses.
   humanURL: https://mindmazetherapeutics.com/about/media/
   baseURL: https://mindmazetherapeutics.com/wp-json
   tags:
-  - Content
-  - News
-  - Investor Relations
-  - Regulatory Disclosure
+  - Discovery
+  properties:
+  - type: OpenAPI
+    url: openapi/mindmaze-discovery-api-openapi.yml
+  - type: Examples
+    url: examples/mindmaze-categories.json
+  - type: Examples
+    url: examples/mindmaze-press-releases.json
+  - type: Examples
+    url: examples/mindmaze-eqs-ad-hoc-news.json
+  - type: Examples
+    url: examples/mindmaze-search.json
+  - type: Examples
+    url: examples/mindmaze-content-types.json
+  - type: Examples
+    url: examples/mindmaze-taxonomies.json
+  - type: ToolCrosswalk
+    url: mcp/mindmaze-tool-crosswalk.yml
+- aid: mindmaze:mindmaze-media-api
+  name: MindMaze Media API
+  description: Images, documents and files in the MindMaze media library.
+  humanURL: https://mindmazetherapeutics.com/about/media/
+  baseURL: https://mindmazetherapeutics.com/wp-json
+  tags:
   - Media
   properties:
   - type: OpenAPI
-    url: openapi/mindmaze-content-openapi.yml
-  - type: Overlay
-    url: overlays/mindmaze-content-overlay.yaml
+    url: openapi/mindmaze-media-api-openapi.yml
+  - type: Examples
+    url: examples/mindmaze-categories.json
+  - type: Examples
+    url: examples/mindmaze-press-releases.json
+  - type: Examples
+    url: examples/mindmaze-eqs-ad-hoc-news.json
+  - type: Examples
+    url: examples/mindmaze-search.json
+  - type: Examples
+    url: examples/mindmaze-content-types.json
+  - type: Examples
+    url: examples/mindmaze-taxonomies.json
+  - type: ToolCrosswalk
+    url: mcp/mindmaze-tool-crosswalk.yml
+- aid: mindmaze:mindmaze-oembed-api
+  name: MindMaze O Embed API
+  description: oEmbed representation of a mindmazetherapeutics.com URL.
+  humanURL: https://mindmazetherapeutics.com/about/media/
+  baseURL: https://mindmazetherapeutics.com/wp-json
+  tags:
+  - oEmbed
+  properties:
+  - type: OpenAPI
+    url: openapi/mindmaze-oembed-api-openapi.yml
+  - type: Examples
+    url: examples/mindmaze-categories.json
+  - type: Examples
+    url: examples/mindmaze-press-releases.json
+  - type: Examples
+    url: examples/mindmaze-eqs-ad-hoc-news.json
+  - type: Examples
+    url: examples/mindmaze-search.json
+  - type: Examples
+    url: examples/mindmaze-content-types.json
+  - type: Examples
+    url: examples/mindmaze-taxonomies.json
+  - type: ToolCrosswalk
+    url: mcp/mindmaze-tool-crosswalk.yml
+- aid: mindmaze:mindmaze-pages-api
+  name: MindMaze Pages API
+  description: >-
+    Marketing, product, platform, research and investor-relations pages on mindmazetherapeutics.com.
+  humanURL: https://mindmazetherapeutics.com/about/media/
+  baseURL: https://mindmazetherapeutics.com/wp-json
+  tags:
+  - Pages
+  properties:
+  - type: OpenAPI
+    url: openapi/mindmaze-pages-api-openapi.yml
+  - type: Examples
+    url: examples/mindmaze-categories.json
+  - type: Examples
+    url: examples/mindmaze-press-releases.json
+  - type: Examples
+    url: examples/mindmaze-eqs-ad-hoc-news.json
+  - type: Examples
+    url: examples/mindmaze-search.json
+  - type: Examples
+    url: examples/mindmaze-content-types.json
+  - type: Examples
+    url: examples/mindmaze-taxonomies.json
+  - type: ToolCrosswalk
+    url: mcp/mindmaze-tool-crosswalk.yml
+- aid: mindmaze:mindmaze-posts-api
+  name: MindMaze Posts API
+  description: >-
+    MindMaze Therapeutics news: EQS regulatory and ad-hoc announcements, investor-relations news, press
+    releases, in-the-media coverage, events, testimonials and product announcements.
+  humanURL: https://mindmazetherapeutics.com/about/media/
+  baseURL: https://mindmazetherapeutics.com/wp-json
+  tags:
+  - Posts
+  properties:
+  - type: OpenAPI
+    url: openapi/mindmaze-posts-api-openapi.yml
+  - type: Examples
+    url: examples/mindmaze-categories.json
+  - type: Examples
+    url: examples/mindmaze-press-releases.json
+  - type: Examples
+    url: examples/mindmaze-eqs-ad-hoc-news.json
+  - type: Examples
+    url: examples/mindmaze-search.json
+  - type: Examples
+    url: examples/mindmaze-content-types.json
+  - type: Examples
+    url: examples/mindmaze-taxonomies.json
+  - type: ToolCrosswalk
+    url: mcp/mindmaze-tool-crosswalk.yml
+- aid: mindmaze:mindmaze-search-api
+  name: MindMaze Search API
+  description: Cross-content-type search over published mindmazetherapeutics.com content.
+  humanURL: https://mindmazetherapeutics.com/about/media/
+  baseURL: https://mindmazetherapeutics.com/wp-json
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/mindmaze-search-api-openapi.yml
+  - type: Examples
+    url: examples/mindmaze-categories.json
+  - type: Examples
+    url: examples/mindmaze-press-releases.json
+  - type: Examples
+    url: examples/mindmaze-eqs-ad-hoc-news.json
+  - type: Examples
+    url: examples/mindmaze-search.json
+  - type: Examples
+    url: examples/mindmaze-content-types.json
+  - type: Examples
+    url: examples/mindmaze-taxonomies.json
+  - type: ToolCrosswalk
+    url: mcp/mindmaze-tool-crosswalk.yml
+- aid: mindmaze:mindmaze-taxonomy-api
+  name: MindMaze Taxonomy API
+  description: >-
+    The categories and tags used to classify MindMaze posts, including the EQS, ad-hoc-news and other-ir-news
+    disclosure categories.
+  humanURL: https://mindmazetherapeutics.com/about/media/
+  baseURL: https://mindmazetherapeutics.com/wp-json
+  tags:
+  - Taxonomy
+  properties:
+  - type: OpenAPI
+    url: openapi/mindmaze-taxonomy-api-openapi.yml
   - type: Examples
     url: examples/mindmaze-categories.json
   - type: Examples
@@ -100,6 +234,8 @@ x-enrichment:
   artifacts_added: 26
   pass: local-v1
 common:
+- type: Overlay
+  url: overlays/mindmaze-content-overlay.yaml
 - type: MCPServer
   url: mcp/mindmaze-mcp.yml
 - type: AgenticAccess
