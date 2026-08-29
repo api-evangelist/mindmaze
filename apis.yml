@@ -18,6 +18,18 @@ description: 'MindMaze Therapeutics Holding SA (SIX: MMTX) is a Swiss precision-
   corporate site, which carries 450 posts - 309 of them EQS regulatory and investor-relations
   disclosure for the SIX-listed issuer - 49 pages and 1,070 media records.'
 url: https://raw.githubusercontent.com/api-evangelist/mindmaze/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://mindmazetherapeutics.com/wp-content/themes/mindmaze/images/mindmazetheraputics.png
 x-type: company
 x-source: harvest:secondary-market
