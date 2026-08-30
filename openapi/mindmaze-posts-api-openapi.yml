@@ -1,0 +1,312 @@
+openapi: 3.2.0
+info:
+  title: MindMaze Therapeutics Content Posts API
+  version: wp/v2
+  summary: The public, read-only WordPress REST API behind mindmazetherapeutics.com.
+  description: 'MindMaze Therapeutics publishes no developer portal and no product API for its neurotherapeutics platform, but its corporate site at mindmazetherapeutics.com runs on WordPress and serves the standard WordPress REST API anonymously at https://mindmazetherapeutics.com/wp-json/. That surface is a real, machine-readable, unauthenticated read API over MindMaze content: 450 posts, 49 pages, 1,070 media items, 11 categories and cross-content search. Because MindMaze Therapeutics Holding SA is listed on the SIX Swiss Exchange (MMTX), the post corpus is dominated by regulatory disclosure: 309 posts in the "EQS" category, 162 in "Ad hoc news" (EQS ad-hoc announcements), 147 in "Other IR news", 27 in "Press releases", 92 "In the media", 17 "Events", 7 "Testimonials" and 2 "Products". This document is DERIVED from the live route discovery document at https://mindmazetherapeutics.com/wp-json/ (saved verbatim as mindmaze-content-wp-routes-original.json); every path and method here comes from that document, and every operation listed was verified to return HTTP 200 anonymously on 2026-08-01. Write methods (POST/PUT/PATCH/DELETE) and the administrative namespaces (settings, themes, plugins, menus, block-types, widgets, users/me, jetpack, yoast, redirection, ai1wm) are deliberately excluded: they exist on the host but return 401 rest_forbidden and are not a public API. This is a corporate content and investor-relations API - it is NOT a clinical, device or patient-data API. MindMaze products (Companion, MindMotion GO, MindPod, Izar, Physilog, TOAP Run) are regulated medical devices; no public API, SDK or contract for them exists.'
+  contact:
+    name: MindMaze Therapeutics
+    url: https://mindmazetherapeutics.com/about/contact/
+  termsOfService: https://mindmazetherapeutics.com/terms-and-conditions/
+  x-provenance:
+    method: derived
+    source: https://mindmazetherapeutics.com/wp-json/
+    derived: '2026-08-01'
+    note: Derived by API Evangelist from the live WordPress route discovery document; not published by MindMaze Therapeutics.
+servers:
+- url: https://mindmazetherapeutics.com/wp-json
+  description: Production
+security:
+- {}
+tags:
+- name: Posts
+  description: 'MindMaze Therapeutics news: EQS regulatory and ad-hoc announcements, investor-relations news, press releases, in-the-media coverage, events, testimonials and product announcements.'
+paths:
+  /wp/v2/posts:
+    get:
+      operationId: listPosts
+      summary: List posts
+      description: 'MindMaze Therapeutics news items. 450 published records on 2026-08-01. Filter by category to isolate a disclosure stream: 24 = EQS ad-hoc news, 23 = EQS, 25 = Other IR news, 8 = Press releases, 9 = In the media, 10 = Events, 11 = Testimonials, 16 = Products.'
+      tags:
+      - Posts
+      security:
+      - {}
+      parameters:
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/perPage'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/after'
+      - $ref: '#/components/parameters/before'
+      - $ref: '#/components/parameters/order'
+      - $ref: '#/components/parameters/orderby'
+      - $ref: '#/components/parameters/slug'
+      - $ref: '#/components/parameters/fields'
+      - name: categories
+        in: query
+        description: Limit result set to items assigned to the given category term ids.
+        schema:
+          type: array
+          items:
+            type: integer
+        style: form
+        explode: false
+      - name: tags
+        in: query
+        description: Limit result set to items assigned to the given tag term ids.
+        schema:
+          type: array
+          items:
+            type: integer
+        style: form
+        explode: false
+      responses:
+        '200':
+          description: Successful response.
+          headers:
+            X-WP-Total:
+              $ref: '#/components/headers/XWPTotal'
+            X-WP-TotalPages:
+              $ref: '#/components/headers/XWPTotalPages'
+            Link:
+              $ref: '#/components/headers/LinkPagination'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+              examples:
+                pressReleases:
+                  summary: Three MindMaze press releases (category 8)
+                  externalValue: ../examples/mindmaze-press-releases.json
+                eqsAdHoc:
+                  summary: Three EQS ad-hoc regulatory announcements (category 24)
+                  externalValue: ../examples/mindmaze-eqs-ad-hoc-news.json
+        '400':
+          $ref: '#/components/responses/InvalidParam'
+  /wp/v2/posts/{id}:
+    get:
+      operationId: getPost
+      summary: Get a post
+      description: Retrieve a single MindMaze news item, press release or regulatory announcement by its numeric id.
+      tags:
+      - Posts
+      security:
+      - {}
+      parameters:
+      - $ref: '#/components/parameters/id'
+      - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  headers:
+    XWPTotal:
+      description: Total number of matching records.
+      schema:
+        type: integer
+    XWPTotalPages:
+      description: Total number of pages available.
+      schema:
+        type: integer
+    LinkPagination:
+      description: RFC 8288 Link header carrying rel="next" and rel="prev" page URLs.
+      schema:
+        type: string
+  parameters:
+    after:
+      name: after
+      in: query
+      description: Limit response to posts published after a given ISO 8601 compliant date.
+      schema:
+        type: string
+        format: date-time
+    search:
+      name: search
+      in: query
+      description: Limit results to those matching a string.
+      schema:
+        type: string
+    id:
+      name: id
+      in: path
+      required: true
+      description: Unique numeric identifier for the object.
+      schema:
+        type: integer
+    page:
+      name: page
+      in: query
+      description: Current page of the collection.
+      schema:
+        type: integer
+        default: 1
+        minimum: 1
+    fields:
+      name: _fields
+      in: query
+      description: Limit the fields returned in the response, as a comma-separated list.
+      schema:
+        type: string
+      example: id,date,slug,link,title,categories
+    order:
+      name: order
+      in: query
+      description: Order sort attribute ascending or descending.
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        default: desc
+    before:
+      name: before
+      in: query
+      description: Limit response to posts published before a given ISO 8601 compliant date.
+      schema:
+        type: string
+        format: date-time
+    slug:
+      name: slug
+      in: query
+      description: Limit result set to items with one or more specific slugs.
+      schema:
+        type: array
+        items:
+          type: string
+      style: form
+      explode: false
+    perPage:
+      name: per_page
+      in: query
+      description: Maximum number of items to be returned in the result set.
+      schema:
+        type: integer
+        default: 10
+        minimum: 1
+        maximum: 100
+    orderby:
+      name: orderby
+      in: query
+      description: Sort collection by object attribute.
+      schema:
+        type: string
+        enum:
+        - author
+        - date
+        - id
+        - include
+        - modified
+        - parent
+        - relevance
+        - slug
+        - title
+        default: date
+  schemas:
+    Post:
+      type: object
+      description: A MindMaze Therapeutics news item, press release or regulatory announcement.
+      properties:
+        id:
+          type: integer
+        date:
+          type: string
+          format: date-time
+        date_gmt:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        slug:
+          type: string
+        status:
+          type: string
+        type:
+          type: string
+        link:
+          type: string
+          format: uri
+        title:
+          $ref: '#/components/schemas/Rendered'
+        content:
+          $ref: '#/components/schemas/Rendered'
+        excerpt:
+          $ref: '#/components/schemas/Rendered'
+        author:
+          type: integer
+        featured_media:
+          type: integer
+        categories:
+          type: array
+          items:
+            type: integer
+        tags:
+          type: array
+          items:
+            type: integer
+    Error:
+      type: object
+      description: The WordPress REST API error envelope. Not RFC 9457 problem+json.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable error message.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code.
+            params:
+              type: object
+              description: Per-parameter validation messages, on rest_invalid_param.
+            details:
+              type: object
+              description: Per-parameter structured error detail, on rest_invalid_param.
+      required:
+      - code
+      - message
+      - data
+    Rendered:
+      type: object
+      description: A rendered content field.
+      properties:
+        rendered:
+          type: string
+        protected:
+          type: boolean
+  responses:
+    NotFound:
+      description: The requested object does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: rest_post_invalid_id
+            message: Invalid post ID.
+            data:
+              status: 404
+    InvalidParam:
+      description: One or more query parameters failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: rest_invalid_param
+            message: 'Invalid parameter(s): per_page'
+            data:
+              status: 400
+              params:
+                per_page: per_page must be between 1 (inclusive) and 100 (inclusive)
