@@ -123,30 +123,6 @@ apis:
     url: examples/mindmaze-taxonomies.json
   - type: ToolCrosswalk
     url: mcp/mindmaze-tool-crosswalk.yml
-- aid: mindmaze:mindmaze-oembed-api
-  name: MindMaze O Embed API
-  description: oEmbed representation of a mindmazetherapeutics.com URL.
-  humanURL: https://mindmazetherapeutics.com/about/media/
-  baseURL: https://mindmazetherapeutics.com/wp-json
-  tags:
-  - oEmbed
-  properties:
-  - type: OpenAPI
-    url: openapi/mindmaze-oembed-api-openapi.yml
-  - type: Examples
-    url: examples/mindmaze-categories.json
-  - type: Examples
-    url: examples/mindmaze-press-releases.json
-  - type: Examples
-    url: examples/mindmaze-eqs-ad-hoc-news.json
-  - type: Examples
-    url: examples/mindmaze-search.json
-  - type: Examples
-    url: examples/mindmaze-content-types.json
-  - type: Examples
-    url: examples/mindmaze-taxonomies.json
-  - type: ToolCrosswalk
-    url: mcp/mindmaze-tool-crosswalk.yml
 - aid: mindmaze:mindmaze-pages-api
   name: MindMaze Pages API
   description: >-
@@ -234,6 +210,30 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/mindmaze-taxonomy-api-openapi.yml
+  - type: Examples
+    url: examples/mindmaze-categories.json
+  - type: Examples
+    url: examples/mindmaze-press-releases.json
+  - type: Examples
+    url: examples/mindmaze-eqs-ad-hoc-news.json
+  - type: Examples
+    url: examples/mindmaze-search.json
+  - type: Examples
+    url: examples/mindmaze-content-types.json
+  - type: Examples
+    url: examples/mindmaze-taxonomies.json
+  - type: ToolCrosswalk
+    url: mcp/mindmaze-tool-crosswalk.yml
+- aid: mindmaze:mindmaze-o-embed-api
+  name: MindMaze o Embed API
+  description: oEmbed representation of a mindmazetherapeutics.com URL.
+  humanURL: https://mindmazetherapeutics.com/about/media/
+  baseURL: https://mindmazetherapeutics.com/wp-json
+  tags:
+  - o Embed
+  properties:
+  - type: OpenAPI
+    url: openapi/mindmaze-o-embed-api-openapi.yml
   - type: Examples
     url: examples/mindmaze-categories.json
   - type: Examples
