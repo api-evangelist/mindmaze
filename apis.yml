@@ -230,6 +230,8 @@ apis:
   humanURL: https://mindmazetherapeutics.com/about/media/
   baseURL: https://mindmazetherapeutics.com/wp-json
   tags:
+  - oEmbed
+  tags_raw:
   - o Embed
   properties:
   - type: OpenAPI
