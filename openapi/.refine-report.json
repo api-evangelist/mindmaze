@@ -1,0 +1,35 @@
+{
+  "provider": "mindmaze",
+  "sources": [
+    "_original/mindmaze-content-openapi.yml"
+  ],
+  "outputs": [
+    "mindmaze-discovery-api-openapi.yml",
+    "mindmaze-media-api-openapi.yml",
+    "mindmaze-pages-api-openapi.yml",
+    "mindmaze-posts-api-openapi.yml",
+    "mindmaze-search-api-openapi.yml",
+    "mindmaze-taxonomy-api-openapi.yml",
+    "mindmaze-oembed-api-openapi.yml"
+  ],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "mindmaze-content-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: mindmaze-o-embed-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 7 total)"
+  ],
+  "skipped": [
+    "mindmaze-discovery-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mindmaze-media-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mindmaze-o-embed-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mindmaze-pages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mindmaze-posts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mindmaze-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mindmaze-taxonomy-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
+}

@@ -3,7 +3,7 @@ info:
   title: MindMaze Therapeutics Content Pages API
   version: wp/v2
   summary: The public, read-only WordPress REST API behind mindmazetherapeutics.com.
-  description: 'MindMaze Therapeutics publishes no developer portal and no product API for its neurotherapeutics platform, but its corporate site at mindmazetherapeutics.com runs on WordPress and serves the standard WordPress REST API anonymously at https://mindmazetherapeutics.com/wp-json/. That surface is a real, machine-readable, unauthenticated read API over MindMaze content: 450 posts, 49 pages, 1,070 media items, 11 categories and cross-content search. Because MindMaze Therapeutics Holding SA is listed on the SIX Swiss Exchange (MMTX), the post corpus is dominated by regulatory disclosure: 309 posts in the "EQS" category, 162 in "Ad hoc news" (EQS ad-hoc announcements), 147 in "Other IR news", 27 in "Press releases", 92 "In the media", 17 "Events", 7 "Testimonials" and 2 "Products". This document is DERIVED from the live route discovery document at https://mindmazetherapeutics.com/wp-json/ (saved verbatim as mindmaze-content-wp-routes-original.json); every path and method here comes from that document, and every operation listed was verified to return HTTP 200 anonymously on 2026-08-01. Write methods (POST/PUT/PATCH/DELETE) and the administrative namespaces (settings, themes, plugins, menus, block-types, widgets, users/me, jetpack, yoast, redirection, ai1wm) are deliberately excluded: they exist on the host but return 401 rest_forbidden and are not a public API. This is a corporate content and investor-relations API - it is NOT a clinical, device or patient-data API. MindMaze products (Companion, MindMotion GO, MindPod, Izar, Physilog, TOAP Run) are regulated medical devices; no public API, SDK or contract for them exists.'
+  description: MindMaze Therapeutics publishes no developer portal and no product API for its neurotherapeutics platform, but its corporate site at mindmazetherapeutics.com runs on WordPress and serves the standard WordPress REST API anonymously at https://mindmazetherapeutics.com/wp-json/.
   contact:
     name: MindMaze Therapeutics
     url: https://mindmazetherapeutics.com/about/contact/
@@ -79,26 +79,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  headers:
-    XWPTotal:
-      description: Total number of matching records.
-      schema:
-        type: integer
-    XWPTotalPages:
-      description: Total number of pages available.
-      schema:
-        type: integer
-    LinkPagination:
-      description: RFC 8288 Link header carrying rel="next" and rel="prev" page URLs.
-      schema:
-        type: string
   parameters:
-    search:
-      name: search
-      in: query
-      description: Limit results to those matching a string.
-      schema:
-        type: string
     id:
       name: id
       in: path
@@ -106,41 +87,6 @@ components:
       description: Unique numeric identifier for the object.
       schema:
         type: integer
-    page:
-      name: page
-      in: query
-      description: Current page of the collection.
-      schema:
-        type: integer
-        default: 1
-        minimum: 1
-    fields:
-      name: _fields
-      in: query
-      description: Limit the fields returned in the response, as a comma-separated list.
-      schema:
-        type: string
-      example: id,date,slug,link,title,categories
-    order:
-      name: order
-      in: query
-      description: Order sort attribute ascending or descending.
-      schema:
-        type: string
-        enum:
-        - asc
-        - desc
-        default: desc
-    slug:
-      name: slug
-      in: query
-      description: Limit result set to items with one or more specific slugs.
-      schema:
-        type: array
-        items:
-          type: string
-      style: form
-      explode: false
     perPage:
       name: per_page
       in: query
@@ -150,6 +96,20 @@ components:
         default: 10
         minimum: 1
         maximum: 100
+    page:
+      name: page
+      in: query
+      description: Current page of the collection.
+      schema:
+        type: integer
+        default: 1
+        minimum: 1
+    search:
+      name: search
+      in: query
+      description: Limit results to those matching a string.
+      schema:
+        type: string
     orderby:
       name: orderby
       in: query
@@ -167,18 +127,34 @@ components:
         - slug
         - title
         default: date
+    slug:
+      name: slug
+      in: query
+      description: Limit result set to items with one or more specific slugs.
+      schema:
+        type: array
+        items:
+          type: string
+      style: form
+      explode: false
+    fields:
+      name: _fields
+      in: query
+      description: Limit the fields returned in the response, as a comma-separated list.
+      schema:
+        type: string
+      example: id,date,slug,link,title,categories
+    order:
+      name: order
+      in: query
+      description: Order sort attribute ascending or descending.
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        default: desc
   responses:
-    NotFound:
-      description: The requested object does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: rest_post_invalid_id
-            message: Invalid post ID.
-            data:
-              status: 404
     InvalidParam:
       description: One or more query parameters failed validation.
       content:
@@ -192,6 +168,17 @@ components:
               status: 400
               params:
                 per_page: per_page must be between 1 (inclusive) and 100 (inclusive)
+    NotFound:
+      description: The requested object does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: rest_post_invalid_id
+            message: Invalid post ID.
+            data:
+              status: 404
   schemas:
     Page:
       type: object
@@ -256,3 +243,16 @@ components:
           type: string
         protected:
           type: boolean
+  headers:
+    XWPTotalPages:
+      description: Total number of pages available.
+      schema:
+        type: integer
+    XWPTotal:
+      description: Total number of matching records.
+      schema:
+        type: integer
+    LinkPagination:
+      description: RFC 8288 Link header carrying rel="next" and rel="prev" page URLs.
+      schema:
+        type: string
