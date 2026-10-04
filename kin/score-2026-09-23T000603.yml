@@ -1,41 +1,39 @@
-# Kin Score artifact — mindmaze — 2026-08-26T215308
+# Kin Score artifact — mindmaze — 2026-09-23T000603
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: mindmaze
-  schema_version: 0.15.0
-  scored_at: '2026-08-26'
-  run_ts: 2026-08-26T215308
-  composite: 26.8
-  band: thin
+  schema_version: 0.22.0
+  scored_at: '2026-09-23'
+  run_ts: 2026-09-23T000603
+  composite: 21.3
+  band: emerging
   facets:
-    discoverability: 68.5
-    contract_quality: 17.0
-    governance: 12.1
+    discoverability: 66.7
+    contract_quality: 0.0
+    contract_governance: 0.0
     operational_transparency: 0.0
-    developer_ergonomics: 20.8
-    commercial_clarity: 21.1
-    contract_governance: 12.1
+    developer_ergonomics: 30.4
     access_clarity: 21.1
   agent_readiness:
-    score: 29.8
-    band: agent-ready
+    score: 10.3
+    band: agent-aware
     dimensions:
-      spec_presence: true
+      spec_presence: false
       agentic_access: derived
-      reversibility_documented: na
+      reversibility_documented: false
       mcp_server: false
       auth_clarity: bearer
-      idempotency: na
+      idempotency: false
       error_semantics: documented
-      openapi_examples: partial
+      openapi_examples: false
       rate_limit_signal: false
       event_surface_described: false
       agent_skills: derived
       well_known_catalog: false
       consent_identity: true
       agent_card: false
-      dry_run_mode: na
+      dry_run_mode: false
       delegated_identity: false
       protected_resource_metadata: false
       dynamic_client_registration: false
@@ -44,15 +42,10 @@ kin_score:
     applies: true
     regime: Health
     regime_id: health
-    score: 57.5
+    score: 47.5
     matched_via: tags
   provenance:
     mcp: derived
     skills: derived
     agentic_access: derived
     conformance: first-party
-    contracts:
-      total: 1
-      derived: 1
-      coverage: 100.0
-      callable: 100.0
