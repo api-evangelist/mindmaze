@@ -64,31 +64,114 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-MindMaze Therapeutics Holding SA (SIX: MMTX) is a Swiss precision-neurotherapeutics company
-headquartered in Lausanne, with a Geneva holding entity and a US base in Charlotte, North
-Carolina. Founded in 2012 by Tej Tadi as an EPFL spin-off, it became Switzerland's first unicorn;
-in December 2025 its successor entity NeuroX completed a business combination with Relief
-Therapeutics to form the SIX-listed MindMaze Therapeutics. It builds digital neurotherapeutics —
-gamified therapy software paired with proprietary sensors and AI-driven analytics — for stroke,
-Parkinson's disease and at-risk aging, across hospital, outpatient and home care, deployed in
-more than 250 clinics and rehabilitation centers globally. The FDA-listed and CE-marked portfolio
-is Companion, MindMotion GO, MindPod, Izar, Physilog and TOAP Run.
+MindMaze Therapeutics Holding SA (SIX: MMTX) is a Swiss precision-neurotherapeutics company headquartered in Lausanne, with a Geneva holding entity and a US base in Charlotte, North Carolina. Founded in 2012 by Tej Tadi as an EPFL spin-off, MindMaze became Switzerland's first unicorn and in December 2025 its successor entity NeuroX completed a business combination with Relief Therapeutics to form the SIX-listed MindMaze Therapeutics. The company builds digital neurotherapeutics that pair gamified therapy software with proprietary sensors and AI-driven analytics across the continuum of care - in-hospital, outpatient and at home - for stroke, Parkinson's disease and at-risk aging. Its FDA-listed and CE-marked portfolio includes Companion, MindMotion GO, MindPod, the Izar smart hand peripheral, the Physilog 3D motion-analytics platform and TOAP Run, deployed in more than 250 clinics and rehabilitation centers globally. MindMaze is a regulated medical-device and digital-therapeutics vendor rather than a software platform business: as of 2026-08-01 it publishes no developer portal, no API documentation, no SDKs, no CLI and no product API contract, and no API, docs or developer subdomain resolves on its domains. The one machine-readable surface it does serve is the anonymous WordPress REST API behind its corporate site, which carries 450 posts - 309 of them EQS regulatory and investor-relations disclosure for the SIX-listed issuer - 49 pages and 1,070 media records.
 
-- https://mindmazetherapeutics.com/ (mindmaze.com redirects here)
-- https://forgeglobal.com/mindmaze_stock/
+**Areas:** Company · Digital Therapeutics · Neurotechnology · Neurorehabilitation · Medical Devices · Health · Artificial Intelligence · Stroke · Parkinson's Disease · Switzerland
 
-## API posture
+## MindMaze on APIs.io
 
-MindMaze publishes **no developer portal, no API documentation, no SDKs, no CLI and no product
-API contract**. There is no MCP server, no GraphQL surface, no A2A agent card and no GitHub
-organization, and no developer-shaped subdomain resolves on either domain.
+Everything profiled for MindMaze is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/mindmaze/](https://apis.io/providers/mindmaze/)** — or go straight to one of the APIs or properties below.
 
-The one machine-readable surface it serves is the anonymous **WordPress core REST API** behind
-its corporate site at `https://mindmazetherapeutics.com/wp-json/` — 450 posts (309 of them EQS
-regulatory and investor-relations disclosure), 49 pages, 1,070 media records and cross-content
-search. It is captured here as a derived OpenAPI 3.1.0 with 17 verified anonymous operations. It
-is a corporate content and investor-relations API; it carries no clinical, device or patient data.
+### APIs (1)
 
-`robots.txt` on this host publishes a Content Signals policy of `search=yes, ai-train=no,
-use=reference` with an Article 4 EU DSM reservation of rights. Treat retrieved content as
-reference-only.
+- [MindMaze Website (WordPress REST)](https://apis.io/apis/mindmaze/mindmazetherapeutics-com-website-wordpress-rest/) — The public WordPress REST API (wp-json) of the MindMaze website at mindmazetherapeutics.com: the route index of the site's content management system,…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [mindmaze-mcp.yml](https://apis.io/servers/mindmaze/mindmaze-mcp-yml/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Mindmaze Agentic Access](https://apis.io/agentic-access/mindmaze/mindmaze-agentic-access/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Moved to /providers/mindmaze/](https://apis.io/examples/mindmaze/mindmaze-content-types/)
+- [Moved to /providers/mindmaze/](https://apis.io/examples/mindmaze/mindmaze-taxonomies/)
+
+#### Collections (2)
+
+Postman and Open Collection request collections.
+
+- [Moved to /providers/mindmaze/](https://apis.io/collections/mindmaze/open-mindmaze-content/)
+- [API Collection](https://apis.io/collections/mindmaze/open-mindmaze-content-wp-routes-original/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Mindmaze Authentication](https://apis.io/security/mindmaze/mindmaze-authentication/)
+- [Mindmaze Domain Security](https://apis.io/security/mindmaze/mindmaze-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://mindmazetherapeutics.com/)
+- [Support](https://mindmazetherapeutics.com/about/contact/)
+- [Blog](https://mindmazetherapeutics.com/about/media/)
+- [Terms of service](https://mindmazetherapeutics.com/terms-and-conditions/)
+- [Privacy policy](https://mindmazetherapeutics.com/privacy-policy-eu/)
+
+## API Evangelist rating
+
+**Kin Score 25.1** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 24.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 30.4 |
+| Access clarity | 21.1 |
+
+**Agent readiness 21.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | yes |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 27.9** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/mindmaze/](https://apis.io/providers/mindmaze/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for MindMaze: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/mindmaze/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
